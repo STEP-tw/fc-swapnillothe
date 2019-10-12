@@ -4,4 +4,4 @@ const hideFlowerJar = function(){
   setTimeout(() => {
     elementToHide.style.visibility='visible';
   }, 1000);
-}
+};

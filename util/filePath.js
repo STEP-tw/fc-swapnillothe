@@ -7,7 +7,7 @@ const getContentType = function (contentTitle) {
     return 'application/pdf';
   }
   return `text/${contentTitle.split('.')[2]}`;
-}
+};
 
 const sendFile = (req, res) => {
   const filePath = getFilePath(req.url);
@@ -19,15 +19,14 @@ const sendFile = (req, res) => {
     const contentType = getContentType(filePath);
     res.set('Content-Type', `${contentType}`);
     res.status(200).send(content);
-    return;
   });
-}
+};
 
 const getFilePath = function (url) {
-  if (url == '/') {
+  if (url === '/') {
     return homeUrl;
   }
   return publicUrl + url;
-}
+};
 
 module.exports = sendFile;
