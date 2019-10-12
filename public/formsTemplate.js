@@ -15,7 +15,7 @@ Name:
 		Name: ${name}
 		<input type="submit" value="Logout" class="buttons" >
 		</form>
-		<form action="/guestBook.html" method="POST" style="padding:10px; margin-left: 30px;">
+		<form action="/guest-book" method="POST" style="padding:10px; margin-left: 30px;">
 		Comment:
 		<textarea type="text" name="comment" style="width:150px; height:8"></textarea>
 		<br><br>

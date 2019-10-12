@@ -7,6 +7,7 @@ const formsTemplate = require('../public/formsTemplate');
 const express = require("express");
 const app = express();
 
+const loggedInUsers = [];
 const loadedData = {};
 
 const readHtmlTemplate = function () {
@@ -43,18 +44,17 @@ const isUserLoggedIn = function (req, res) {
   return false;
 };
 
-const loggedInUsers = [];
 
 const handleLogIn = function (req, res) {
   res.statusCode = 302;
-  res.setHeader('Set-Cookie', `${req.body}`)
-  res.setHeader('location', '/guestBook.html');
+  res.setHeader('Set-Cookie', `${req.body}`);
+  res.setHeader('location', '/guest-book');
   res.end();
 };
 
 const getUserName = function(req){
   return req.headers.cookie.split("=")[1];
-}
+};
 
 const serveGuestBook = function (req, res) {
   let guestBook = getLoginPage();
@@ -69,7 +69,7 @@ const serveGuestBook = function (req, res) {
 const handleLogOut = function (req, res) {
   res.setHeader('Set-Cookie', 'name=deleted; expires=Thu, 18 Dec 2013 12:00:00 UTC');
   res.statusCode = 302;
-  res.setHeader('location', '/guestBook.html');
+  res.setHeader('location', '/guest-book');
   res.end();
 };
 
@@ -117,8 +117,8 @@ const readPostData = function (req, res, next) {
 app.use(logRequest);
 app.use(readPostData);
 
-app.post('/guestBook.html', writeComments);
-app.get('/guestBook.html', serveGuestBook);
+app.post('/guest-book', writeComments);
+app.get('/guest-book', serveGuestBook);
 app.get('/comments', refreshComments);
 app.post('/login', handleLogIn);
 app.post('/logout', handleLogOut);

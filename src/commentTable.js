@@ -38,6 +38,6 @@ const createTable = function (comments) {
   });
   tableData += '</table>';
   return tableData;
-}
+};
 
 module.exports = createTable;
